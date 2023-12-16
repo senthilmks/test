@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<!-- a tag library descriptor file created by Vinoth.S -->
+
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>fipltags</short-name>
+    <uri>/csajsp</uri>
+    <display-name>fiplTags</display-name>
+    <small-icon></small-icon>
+    <large-icon></large-icon>
+    <description> Test</description>    
+    <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+    <tldx>
+        <tagHandlerGenerationRoot>.\classes</tagHandlerGenerationRoot>
+        <JarFile></JarFile>
+    </tldx>
+    -->
+    <!-- Tag to process ResultSet -->
+    <tag>
+        <name>process</name>
+        <tag-class>com.test.tags.processResult</tag-class>
+        <body-content>JSP</body-content>
+        <display-name></display-name>
+        <description>Data Result Set Processor</description>
+        <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+        <tldx>
+            <packagename>com.test.tags</packagename>
+            <extendsSupportClass>TRUE</extendsSupportClass>
+            <supportClass>BodyTagSupport</supportClass>
+            <implementsTryCatchFinally>FALSE</implementsTryCatchFinally>
+            <findparent>FALSE</findparent>
+        </tldx>
+        -->
+        <attribute>
+            <name>resultSet</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.sql.ResultSet</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>            
+        <attribute>
+            <name>startFrom</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <attribute>
+            <name>processCount</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <attribute>
+            <name>nullValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <attribute>
+            <name>closeResultSetAtEnd</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>        
+        <example></example>                    
+    </tag>
+       
+
+    
+            <!-- Tag for PAGING -->           
+    <tag>
+        <name>paging</name>
+        <tag-class>com.test.tags.PageNavigation</tag-class>
+        <body-content>JSP</body-content>
+        <display-name></display-name>
+        <description>Paging the ResultSet Records</description>
+        <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+        <tldx>
+            <packagename>com.test.tags</packagename>
+            <extendsSupportClass>TRUE</extendsSupportClass>
+            <supportClass>BodyTagSupport</supportClass>
+            <implementsTryCatchFinally>FALSE</implementsTryCatchFinally>
+            <findparent>FALSE</findparent>
+        </tldx>
+        -->
+        <attribute>
+            <name>pagingObject</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.test.tags.PagingObject</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <attribute>
+            <name>nullValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <example></example>                    
+    </tag> 
+    <!--  
+        Author : Praveen.G.S 
+        Date : 01st-June-2006
+        Tag Handler java class file name : com.test.tags.AutoHTMLListViewAdvance
+        Description about this tag: 
+            A tag to automatically generate the HTML listview with key nevigation 
+            This tag has three attributes 
+            One is a valie ResultSet
+            Second one is name fo the Text Box
+            Third one is html list page
+            fourth one is Selection function call after select
+            fivth one Style of display
+            Six one is number of coloum display 
+                
+    -->    
+    <tag>
+        <name>listviewadvance</name>
+        <tag-class>com.test.tags.AutoHTMLListViewAdvance</tag-class>
+        <body-content>JSP</body-content>
+        <display-name></display-name>
+        <description>HTML List View Creator - Like VB App Style</description>
+        <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+        <tldx>
+            <packagename>com.test.tags</packagename>
+            <extendsSupportClass>TRUE</extendsSupportClass>
+            <supportClass>BodyTagSupport</supportClass>
+            <implementsTryCatchFinally>FALSE</implementsTryCatchFinally>
+            <findparent>FALSE</findparent>
+        </tldx>
+        -->            
+        <attribute>
+            <name>resultSet</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.sql.ResultSet</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>            
+        <attribute>
+            <name>innerWidth</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>   
+        <attribute>
+            <name>textBoxName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>        
+        <attribute>
+            <name>iframeSourceHtmlFile</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>   
+        <attribute>
+            <name>onSelectionFunction</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>            
+        <attribute>
+            <name>CSSClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>        
+        <attribute>
+            <name>displayColumnCount</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>int</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <example></example>        
+    </tag>                         
+    <!--   End of Key Nevigation list view was created By Praveen.G.S -->
+    
+    
+                  <!-- Tag to generated HTML table -->
+    <!--  
+        Author : Vinoth .S 
+        Date : 27th-March-2004 
+        Tag Handler java class file name : com.test.tags.AutoHTMLTable
+        Description about this tag: 
+            A tag to automatically generate the HTML table from the
+            Database ResultSet and it is named "table"
+            This tag has one attribute and it is must to be supplied
+            that is valid ResultSet
+    -->
+    
+    <tag>
+        <name>table</name>
+        <tag-class>com.test.tags.AutoHTMLTable</tag-class>
+        <body-content>JSP</body-content>
+        <display-name></display-name>            
+        <description>Data Result Set Processor</description>
+        <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+        <tldx>
+            <packagename>com.test.tags</packagename>
+            <extendsSupportClass>TRUE</extendsSupportClass>
+            <supportClass>BodyTagSupport</supportClass>
+            <implementsTryCatchFinally>FALSE</implementsTryCatchFinally>
+            <findparent>FALSE</findparent>
+        </tldx>
+        -->            
+        <attribute>
+            <name>resultSet</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.sql.ResultSet</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>            
+    </tag>
+
+    <!--  
+        Author : Vinoth .S 
+        Date : 13th-May-2004 
+        Tag Handler java class file name : com.test.tags.AutoHTMLCombo
+        Description about this tag: 
+            A tag to automatically generate the HTML combolist from the
+            Database ResultSet and it is named "combo"
+            This tag has three attributes 
+            One is a valie ResultSet
+            Second one is name fo the combolist
+            Third one is optional java function name to be called 
+                when the combolist values changes
+    -->    
+    <tag>
+        <name>combo</name>
+        <tag-class>com.test.tags.AutoHTMLCombo</tag-class>
+        <body-content>JSP</body-content>
+        <display-name></display-name>            
+        <description>Combolist box form ResultSet</description>
+        <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+        <tldx>
+            <packagename>com.test.tags</packagename>
+            <extendsSupportClass>TRUE</extendsSupportClass>
+            <supportClass>BodyTagSupport</supportClass>
+            <implementsTryCatchFinally>FALSE</implementsTryCatchFinally>
+            <findparent>FALSE</findparent>
+        </tldx>
+        -->            
+        <attribute>
+            <name>resultSet</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.sql.ResultSet</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>            
+        <attribute>
+            <name>comboName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>            
+        <attribute>
+            <name>onChangeFunction</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <example></example>            
+    </tag>
+
+    <!-- 
+        HTML list view - (VB App style) creating tag  
+        Author : Vinoth .S 
+        Date : 15th-May-2004 7:30 Morning
+        Tag Handler java class file name : com.test.tags.listview
+        Description about this tag: 
+            Arguments must be supplied : a valid ResultSet, textbox name
+    -->        
+    <tag>
+        <name>listview</name>
+        <tag-class>com.test.tags.AutoHTMLListView</tag-class>
+        <body-content>JSP</body-content>
+        <display-name></display-name>
+        <description>HTML List View Creator - Like VB App Style</description>
+        <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+        <tldx>
+            <packagename>com.test.tags</packagename>
+            <extendsSupportClass>TRUE</extendsSupportClass>
+            <supportClass>BodyTagSupport</supportClass>
+            <implementsTryCatchFinally>FALSE</implementsTryCatchFinally>
+            <findparent>FALSE</findparent>
+        </tldx>
+        -->            
+        <attribute>
+            <name>resultSet</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.sql.ResultSet</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>            
+        <attribute>
+            <name>textBoxName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>        
+        <attribute>
+            <name>iframeSourceHtmlFile</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>   
+        <attribute>
+            <name>onSelectionFunction</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>            
+        <attribute>
+            <name>CSSClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>        
+        <attribute>
+            <name>displayColumnCount</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>int</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <example></example>        
+    </tag>
+    
+    <!-- Tag to print Foramted Date -->
+    <!--  
+        Author : Vinoth .S 
+        Date : 27th-March-2004 
+        Tag Handler java class file name : com.test.tags.DateTag
+        Description about this tag: 
+            A tag to print formated date, (Default date format 
+            is "dd/MM/yyyy")
+    -->        
+    <tag>
+        <name>date</name>
+        <tag-class>com.test.tags.DateTag</tag-class>
+        <body-content>JSP</body-content>
+        <display-name></display-name>
+        <description></description>
+        <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+        <tldx>
+            <packagename>com.test.tags</packagename>
+            <extendsSupportClass>TRUE</extendsSupportClass>
+            <supportClass>BodyTagSupport</supportClass>
+            <implementsTryCatchFinally>FALSE</implementsTryCatchFinally>
+            <findparent>FALSE</findparent>
+        </tldx>
+        -->
+        <attribute>
+            <name>format</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <attribute>
+            <name>actualDate</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <example></example>
+    </tag>
+    <tag>
+        <name>SampleTag</name>
+        <tag-class>com.test.tags.SampleTag</tag-class>
+        <body-content>JSP</body-content>
+        <display-name></display-name>
+        <description></description>
+        <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+        <tldx>
+            <packagename>com.test.tags</packagename>
+            <extendsSupportClass>TRUE</extendsSupportClass>
+            <supportClass>BodyTagSupport</supportClass>
+            <implementsTryCatchFinally>FALSE</implementsTryCatchFinally>
+            <findparent>FALSE</findparent>
+        </tldx>
+        -->
+        <attribute>
+            <name>resultSet</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.sql.ResultSet</type>
+            <!-- Forte4J_TLDX:  This comment contains code generation information. Do not delete.
+            <tldx>
+                
+                <IsReferenceID>FALSE</IsReferenceID>
+                <ReferencesTag>FALSE</ReferencesTag>
+                <ReferenceScope>Session</ReferenceScope>
+                
+                
+                <ReferencesTagReferentFirst>TRUE</ReferencesTagReferentFirst>
+            </tldx>
+            -->
+        </attribute>
+        <example></example>
+    </tag>
+</taglib>

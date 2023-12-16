@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>pages/Transfer.jsp</welcome-file>
+	</welcome-file-list>
+
+	<taglib>
+		<taglib-uri>/WEB-INF/myTags.tld</taglib-uri>
+		<taglib-location>/WEB-INF/myTags.tld</taglib-location>
+	</taglib>
+
+	<filter>
+		<filter-name>GzipFilter</filter-name>
+		<filter-class>com.test.util.compress.GZipServletFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>RequestHandlingFilter</filter-name>
+		<filter-class>com.test.security.RequestHandlingFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.css</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>RequestHandlingFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+
+
+	<!-- <filter id="securityFilter_1"> <filter-name>srm.security.Security_1_Delink_zip</filter-name> 
+		<filter-class>com.test.util.security.Security_1_Delink_zip</filter-class> 
+		<load-on-startup>1</load-on-startup> </filter> <filter-mapping id="securityFilter_1_mapping"> 
+		<filter-name>srm.security.Security_1_Delink_zip</filter-name> <url-pattern>/</url-pattern> 
+		<url-pattern>/SessionID</url-pattern> <dispatcher>INCLUDE</dispatcher> <dispatcher>FORWARD</dispatcher> 
+		<dispatcher>REQUEST</dispatcher> <http-method>POST</http-method> <http-method>GET</http-method> 
+		</filter-mapping> <filter id="securityFilter_2"> <filter-name>com.security.Security_2_Checksum</filter-name> 
+		<filter-class>com.test.util.security.Security_2_Checksum</filter-class> <load-on-startup>1</load-on-startup> 
+		</filter> <filter-mapping id="securityFilter_2_mapping"> <filter-name>com.security.Security_2_Checksum</filter-name> 
+		<url-pattern>/</url-pattern> <url-pattern>/AppController</url-pattern> <dispatcher>INCLUDE</dispatcher> 
+		<dispatcher>FORWARD</dispatcher> <dispatcher>REQUEST</dispatcher> <http-method>POST</http-method> 
+		<http-method>GET</http-method> </filter-mapping> -->
+	<servlet>
+		<description>
+		</description>
+		<display-name>AppManager</display-name>
+		<servlet-name>AppManager</servlet-name>
+		<servlet-class>com.test.controller.AppController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AppManager</servlet-name>
+		<url-pattern>/AppManager</url-pattern>
+	</servlet-mapping>
+</web-app>
