@@ -48,19 +48,14 @@
             $(document).ready(function () {
                 //$("#frmMain").validationEngine({validationEventTrigger: 'submit'}); 
                 
+                $(".select2").select();
+                
                 $("#frmMain").validationEngine();
                 
                 //alert( $("#frmMain").validationEngine('validate') );
                 
                 $(function () {
-                     alert("I am ready");
-                    
-                     $(':select.select2').onload(
-                    		 var id = $(this).id;  
-                    		 alert('id>> '+id);
-                             $('#'+id).select2();
-                    );
-                    
+                    // alert("I am ready");
                     $(':input.clsajaxcall[type="text"]').keyup(
                             function (event) {
                                 var ldivobj = $(this).nextAll(".clsdivs:first");
@@ -74,14 +69,6 @@
 //                                    funViewData();
                             }
                     );
-                    
-                    
-                    $(".select2").click(
-                            function () {
-                            	alert('Select2 Clicked');
-                            	funSelectResource(this.id)
-                            }
-                    )
                     $(".butsave").click(
                             function () {
                                 funSaveData();
@@ -123,7 +110,7 @@
                 }
                 );
                 
-                $("#mycheck11").select2({
+                $("#mycheck").select2({
                     ajax: {
                         //url: 'http://localhost:8080/test0212/pages/jsondatasample.jsp',
                         url: '/test0212/AppManager',
@@ -382,127 +369,13 @@
                 )
 
             }
-            
-            function funSelectResource(id){
-            	console.log('funSelectResource>> '+id);
-            	// Fetch the preselected item, and add to the control
-            	//var select2Id = $('#'+id);
-            	
-            	var $example = $('#'+id).select2({
-            		
-            		
-            		$ajax: {
-                        //url: 'http://localhost:8080/test0212/pages/jsondatasample.jsp',
-                        url: '/test0212/AppManager',
-                        //console.log("String >> "+JSON.stringify(preload_data));
-                        //url: JSON.stringify(preload_data),
-                        dataType: 'json',
-                        data: function (params) {
-                        	
-                        	
-                            var query = {
-                                search: params.term,
-                                action: 'select2search',
-                                resource :'${requestScope.resource}'
-                            }
-                            console.log("select2 query >> "+JSON.stringify(query));
-                            // Query parameters will be ?search=[term]&type=user_search
-                            return query;
-                        },
-                        //templateResult: formatSelect,
-                        processResults: function (data) {        
-                            /*return {
-                                results: $.map(data, function (item) {
-                                    return {
-                                        text: item.text + item.desig,
-                                        slug: item.slug,
-                                        id: item.id
-                                    }
-                                })
-                            };*/
-                        	return {results: data};
-                        },
-                        /*processResults: function (data, page) {
-                            return {results: data.results};
-                        },*/
-                        cache: true
-                    },
-                    templateResult: templateResultNew,
-                    escapeMarkup: function(m) {
-                        // Do not escape HTML in the select options text
-                        return m;
-                     },
-                    //templateSelection : templateResult,
-                    cache: true,
-                    placeholder: 'Search for a user...',
-                    minimumInputLength: 1
-            		
-            		
-            		
-            		
-            	}  
-            	);
-            	//console.log('$example >> '+$example);
-            	//var $exampleMulti = $(".js-example-programmatic-multi").select2();
-            	
-            	
-            	
-            	
-            }
-            
-            var firstEmptySelect = true;
-            function templateResultNew(data) {
-            	
-                if (!data.id) {
-                    if (firstEmptySelect) {
-                        console.log('showing row false');
-                        firstEmptySelect = false;
-                        var html='<div class="row">' +
-                        '<div class="col"><b>Client</b></div>' +
-                        '<div class="col"><b>Account</b></div>' +
-                        '<div class="col"><b>Deal</b></div>' +
-                        '</div>';
-                        return html;
-                    } else {
-                        console.log('skipping row true');
-                        return false;
-                    }
-                    console.log('result');
-                    console.log(result);
-                }
-               // console.log('loop value >>'+data);
-                
-               // $.each(data, function (i) {
-                   // $("#select_employee").val(my_obj[i].employee_id).trigger('change');
-                	//console.log('loop value >>'+i);
-                //});
-                
-               /* var html= '<div class="row" "bg-secondary">' +
-                '<div class="col">' + data.id + '</div>' +
-                '<div class="col">' + data.text + '</div>' +
-                '<div class="col">' + data.desig + '</div>' +
-                '</div>'; */
-                
-                var bgcolor;
-                console.log('loop value >>'+data.id);
-                if(data.id=="id"){ bgcolor="bg-secondary";} else {bgcolor=""; }
-
-                var html= '<div class="row"'+ bgcolor +'  >' +
-                '<div class="col">' + data.id + '</div>' +
-                '<div class="col">' + data.text + '</div>' +
-                '<div class="col">' + data.desig + '</div>' +
-                '</div>';
-                
-                return   html;    
-            }
-            
         </script> 
         <title>MyView</title>
     </head>
     <body>
         <form id="frmMain" name="frmMain" method="post" autocomplete="off">
             <h1 align="center">Hello World! Template</h1>
-            <div><select id='mycheck' class="select2" style='width: 400px;' >
+            <div><select id='mycheck' style='width: 400px;'>
     <option value='0'>- Search json data -</option>
 </select></div>
             <table>
