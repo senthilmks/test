@@ -7,9 +7,13 @@ import java.util.List;
 import com.test.LoginUser;
 import com.test.util.db.DataAccessManager;
 
+import net.sf.json.JSONObject;
+
 public class MenuGeneratorDAO extends DataAccessManager{
 	StringBuilder strBufSQLQuery=null;
 	ArrayList<Object> queryParametersList = null;
+	JSONObject jsonObj = null; long tempMenuId=0; StringBuilder menusBody = null;
+	long mmid = 0, smid = 0, pmid = 0;
 	
 	public List getMenuList() {
 		strBufSQLQuery= new StringBuilder();
@@ -60,16 +64,18 @@ public class MenuGeneratorDAO extends DataAccessManager{
 		return resultSetToJsonObj(strBufSQLQuery.toString(),queryParametersList);
 	}
 	
-	public String getUserMenuDetails(String strMenuId) {
+	public List getUserMenuGenerated() {
 		strBufSQLQuery= new StringBuilder();
-		strBufSQLQuery.append("SELECT MM.menuid AS mainmenuid,COALESCE(SM.menuid,0) AS submenuid, COALESCE(PM.menuid,0) AS popupmenuid,MM.menudisplayname AS MainMenuName, SM.menudisplayname AS SubMenuName,PM.menudisplayname AS PopupMenuName, ");
-		strBufSQLQuery.append("SM.menulinkname AS submenupage,PM.menulinkname AS popupumenupage , MM.mainmenulink   FROM swi.menus MM ");		
-		strBufSQLQuery.append("LEFT JOIN swi.menus SM ON MM.menuid = SM.parentmenuid AND SM.menulevel = 2  LEFT JOIN swi.menus PM ON SM.menuid = PM.parentmenuid AND PM.menulevel = 3 ");
-		strBufSQLQuery.append("WHERE MM.menulevel = 1  and MM.activestatus=1 menumain.menuid=? ");
-		strBufSQLQuery.append("WHERE MM.menulevel = 1  and MM.activestatus=1 menumain.menuid=?ORDER BY MM.menuid,MM.menusortnumber, MM.menudisplayname, SM.menusortnumber,SM.menudisplayname, PM.menusortnumber, pm.menudisplayname ");
+		strBufSQLQuery.append("SELECT MM.menuid AS mainmenuid,COALESCE(SM.menuid,0) AS submenuid, COALESCE(PM.menuid,0) AS popupmenuid,MM.menudisplayname AS mainmenuname, SM.menudisplayname AS SubMenuName,PM.menudisplayname AS PopupMenuName, ");
+		strBufSQLQuery.append("SM.menulinkname AS submenupage,PM.menulinkname AS popupumenupage    FROM usermanager.menus MM ");		
+		strBufSQLQuery.append("LEFT JOIN usermanager.menus SM ON MM.menuid = SM.parentmenuid AND SM.menulevel = 2  LEFT JOIN usermanager.menus PM ON SM.menuid = PM.parentmenuid AND PM.menulevel = 3 ");
+		strBufSQLQuery.append("WHERE MM.menulevel = 1 and MM.menuid=1 ");
+		strBufSQLQuery.append("ORDER BY MM.menuid,MM.menusortnumber, MM.menudisplayname, SM.menusortnumber,SM.menudisplayname, PM.menusortnumber, pm.menudisplayname ");
 		queryParametersList = new ArrayList<Object>();
-		queryParametersList.add(0,Integer.parseInt(strMenuId));
-		return resultSetToJsonObj(strBufSQLQuery.toString(),queryParametersList);
+		//queryParametersList.add(0,Integer.parseInt(strMenuId));
+		List menuList= resultSetToList(strBufSQLQuery.toString(),queryParametersList);
+		generateMenu(menuList);
+		return menuList;
 	}
 	
 //  String strQuery=" SELECT MM.menuid AS mainmenuid,COALESCE(SM.menuid,0) AS submenuid, COALESCE(PM.menuid,0) AS popupmenuid,MM.menudisplayname AS MainMenuName, SM.menudisplayname AS SubMenuName,PM.menudisplayname AS PopupMenuName,"
@@ -170,9 +176,45 @@ public class MenuGeneratorDAO extends DataAccessManager{
     }*/
 	
 
+	public String generateMenu (List<?> menuList) {
+		
+		jsonObj=null;
+		if(menuList!=null && menuList.size()>0) {
+			
+			
+			
+			menusBody= new StringBuilder();
+			
+			menusBody.append("<ul id=\"blueMenu\">");
+			
+			menuList.forEach(menu -> {
+				
+				menuList.forEach(subMenu -> {
+					//System.out.println(menu);
+					jsonObj = JSONObject.fromObject(subMenu);
+					//jsonObj.toString();
+					tempMenuId=Long.parseLong((String) jsonObj.get("mainmenuid"));				
+					if (mmid!= tempMenuId) {
+						menusBody.append("<li id=\"blueMenu\">");
+						menusBody.append(jsonObj.get("mainmenuname"));
+						mmid=tempMenuId;
+					} else {
+							menusBody.append("</li>");
+					};
+				});
+				System.out.println("tempMenuId >> "+ tempMenuId + " menusBody >> "+menusBody);
+			});
+			menusBody.append("</li>");
+			menusBody.append("</ul>");
+			
+			
+		}
+		
+		return menusBody.toString();
+		
+	}
 	
-	
-	 public String getMenuIteration(ListIterator<menuListBean> itr, HttpServletRequest request) {
+	/* public String getMenuIteration(ListIterator<menuListBean> itr, HttpServletRequest request) {
 	        String strMenuName = "";
 	        String strPageName = "";
 	        String strMenulink = "";
@@ -364,5 +406,5 @@ public class MenuGeneratorDAO extends DataAccessManager{
        }catch(Exception e){
            System.out.println("Menu Iteration Error = " + e.toString());
        }
-       %>
+       %>*/
 }

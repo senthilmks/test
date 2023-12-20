@@ -40,38 +40,106 @@
         
         
         <script type="text/javascript">
-           
+        var myFormHandlerURL = window.location.href;
+        $(document).ready(function () {
+            //$("#frmMain").validationEngine({validationEventTrigger: 'submit'}); 
             
+            
+            
+            //alert( $("#frmMain").validationEngine('validate') );
+            
+            $(function () {
+                // alert("I am ready");
+                $(':input.clsajaxcall[type="text"]').keyup(
+                        function (event) {
+                            var ldivobj = $(this).nextAll(".clsdivs:first");
+                            //  alert(ldivobj);
+                            var ldiv = "#" + ldivobj.attr("id");
+                            //alert("ldiv>>"+ldiv);
+                            var txtObj = $(this).attr("id")[0];
+                            //alert(txtObj);
+                            //alert("ldivobj.attr('handle') >>"+ldivobj.attr("handle"));
+                            funLoadData(ldivobj.attr("handle"), $(this).val(), ldiv, myTables[ldivobj.attr("handle")]);
+//                                funViewData();
+                        }
+                );
+             
+                $(".butview").click(
+                        function () {
+                            funViewData();
+                        }
+                );
+                
+                $("button").button().click(
+                        function (event) {
+                            event.preventDefault();
+                        }
+                );
+
+            }
+            );
+        }
+        );
+            
+        
+        function funViewData() {
+			alert("target >> "+myFormHandlerURL);
+            var paramValues = $("#frmMain").serializeArray();
+            //paramValues.push({name: "action", value: 2});
+            paramValues.push({name: "action", value: "generatemenu"});
+            paramValues.push({name: "filterval", value: ""});
+            
+            $.post(myFormHandlerURL, paramValues, function (resultdata) {
+                $("#divDataContainer").show();
+                $("#divDataContainer").html(resultdata);
+	
+                $("#tblEmpData").dataTable({
+                    "processing": true,
+                    "bJqueryUI": true,
+                    "bPagenate": false,
+                    "bSort": true,
+                    "destroy": true,
+                    dom: "Bfrtip",
+                    columnDefs: [{
+                            "defaultContent": "-",
+                            "targets": "_all"
+                        }],
+                    buttons: [
+                        {
+                            extend: "copyHtml5",
+                        },
+                        {
+                            extend: "csvHtml5",
+                            title: "My Title for CSV",
+                        },
+                        {
+                            extend: "excelHtml5",
+                            title: "My Title for Excel",
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            title: "My Title for Excel",
+                            orientation: "landscape",
+                            pageSize: "LEGAL",
+                        },
+                    ]
+                }
+                ).yadcf([{column_number: 1, filter_match_mode: 'exact', errMode: 'throw'}]) // End of tblEmpData data tablse            
+
+            }, "html").fail(function (jqXHR, textstatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+            )
+        }
         </script> 
         <title>MyView</title>
     </head>
     <body>
         <form id="frmMain" name="frmMain" method="post" autocomplete="off">
             <h1 align="center">Hello World! Testing</h1>
-            <div><select id='mycheck' class="select2" style='width: 400px;' >
-    <option value='0'>- Search json data -</option>
-</select></div>
-            <table>
-            <tr>
-            <td><div><jsp:include page="common/frmMenuDisplay.jsp" flush="false" /></div></td>
-            <td>
-             <table cellspacing="2" cellpadding="1" class="ui-corner-all ui-widget ui-widget-content" align="center">
-                
-                <tr>
-                    <td>
-                        <button id="butView" class="butview">View 123</button>
-                        <button id="butSave" class="butsave">Save</button>
-                        <button id="butReset" class="butreset ui-button ui-corner-all">Reset</button>
-                        <div id="divAlert" style="display:none;"></div>
-                        <div id="divUAInfo" name="divUAInfo" style="display:none;">UATinfo</div>
-                    </td>
-                </tr>
-            </table>
             
             
-            </td>
-            </tr>            
-            </table>
+            <button id="butView" class="butview">Test View</button>
 
             <table style="width:80%" border="0" align="center" >
                 <tr>                    

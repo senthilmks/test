@@ -7,6 +7,7 @@ import com.test.services.LoginService;
 import com.test.services.MenuService;
 import com.test.services.NavigationService;
 import com.test.services.ServiceInterface;
+import com.test.services.TestingService;
 import com.test.services.UserService;
 import com.test.util.PassMan;
 import java.io.IOException;
@@ -100,6 +101,7 @@ public class AppController extends javax.servlet.http.HttpServlet implements jav
 		appServices.put("EMPLOYEE",new EmployeeService());
 		appServices.put("USER",new UserService());
 		appServices.put("MENU",new MenuService());
+		appServices.put("TESTING",new TestingService());
 		//		appServices.put("SESSIONOUT",new SessionOutCO());		
 		//		appServices.put("CHANGEPASS",new ChangePassCO());
 		//		appServices.put("HOME",new HomeCO());
@@ -136,7 +138,7 @@ public class AppController extends javax.servlet.http.HttpServlet implements jav
 			String strResource =request.getParameter("resource");
 			String strModuleName="pages";
 
-			System.out.println("CLIB : in pageName of AppController >> "+strResource);
+			System.out.println("CLIB : in pageName of AppController >> "+strResource+" action >> "+request.getParameter("action"));
 			boolean sessionExpired = false;
 
 			HttpSession session = request.getSession();	
