@@ -56,7 +56,8 @@ public class LoginService implements ServiceInterface {
 				loginUser.setUserId(uname);
 				loginUser.setPassWord(password);
 				session.setAttribute("logUser", loginUser); 
-				request.setAttribute("targetPage", "MyHome.jsp");
+				//request.setAttribute("targetPage", "MyHome.jsp");
+				request.setAttribute("targetPage", "Template.jsp");
 			}
 			else {
 				objResultJSON.put("resultstatus", "failure");

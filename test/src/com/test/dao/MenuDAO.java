@@ -57,5 +57,5 @@ public class MenuDAO extends DataAccessManager{
 		queryParametersList = new ArrayList<Object>();
 		queryParametersList.add(0,Integer.parseInt(strMenuId));
 		return resultSetToJsonObj(strBufSQLQuery.toString(),queryParametersList);
-	}	
+	}
 }

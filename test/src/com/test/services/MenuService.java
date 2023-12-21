@@ -39,7 +39,7 @@ public class MenuService implements ServiceInterface {
 			strOperation="DISPATCH";
 		}
 		
-		switch (strOperation) {
+		switch (strOperation.toUpperCase()) {
 		case "DEFAULT":
 			System.out.println("MenuService DEFAULT called");
 			//request.setAttribute("targetPage", "MenuView.jsp");
@@ -51,6 +51,8 @@ public class MenuService implements ServiceInterface {
 			JSONObject objResultJSON =null;
 			MenuDAO menuDAO = new MenuDAO();	
 			String strMenuId = request.getParameter("resourceid");
+			
+			
 
 			String menuDetails= menuDAO.getMenuDetails(strMenuId);
 			
@@ -62,6 +64,15 @@ public class MenuService implements ServiceInterface {
 				targetPage=objResultJSON.getString("menulink");
 			}
 			
+			if(strMenuId.trim().equalsIgnoreCase("3")) {
+				targetPage="LoginView.jsp";
+			}
+			else if(strMenuId.trim().equalsIgnoreCase("1")) {
+				targetPage="Page1.jsp";
+			}
+			else if(strMenuId.trim().equalsIgnoreCase("2")) {
+				targetPage="Page2.jsp";
+			}
 			
 //			for(int j=0;j<menuDetails.size();j++) {
 //				objResultJSON = JSONObject.fromObject((menuDetails.get(j).toString()));
