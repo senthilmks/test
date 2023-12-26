@@ -45,27 +45,31 @@ public class LoginService implements ServiceInterface {
 			String uname=request.getParameter("hdnUserName");
 			String password=request.getParameter("hdnPassword");
 
-			LoginDAO loginDAO = new LoginDAO();		
+			LoginServiceValidation loginServiceValidation = new LoginServiceValidation();
 
-			JSONObject objResultJSON = new  JSONObject();
+			boolean isValidLogin = loginServiceValidation.isValidLogin(request, response, datasrc, session,1);
+			if(isValidLogin) {
+				LoginDAO loginDAO = new LoginDAO();		
 
-			if(loginDAO.getIsAuthenticated(uname,password)) {
-				objResultJSON.put("resultstatus", "success");
-				objResultJSON.put("resultmessage", "Login Successful.");
-				LoginUser loginUser= new LoginUser();
-				loginUser.setUserId(uname);
-				loginUser.setPassWord(password);
-				session.setAttribute("logUser", loginUser); 
-				//request.setAttribute("targetPage", "MyHome.jsp");
-				request.setAttribute("targetPage", "Template.jsp");
+				JSONObject objResultJSON = new  JSONObject();
+				if(loginDAO.getIsAuthenticated(uname,password)) {
+					objResultJSON.put("resultstatus", "success");
+					objResultJSON.put("resultmessage", "Login Successful.");
+					LoginUser loginUser= new LoginUser();
+					loginUser.setUserId(uname);
+					loginUser.setPassWord(password);
+					session.setAttribute("logUser", loginUser); 
+					//request.setAttribute("targetPage", "MyHome.jsp");
+					request.setAttribute("targetPage", "Template.jsp");
+				}
 			}
 			else {
-				objResultJSON.put("resultstatus", "failure");
-				objResultJSON.put("resultmessage", "Invalid User Name and/or password.");
 				request.setAttribute("targetPage", "LoginView.jsp");
+				request.setAttribute("errorMsg", loginServiceValidation.getErrorMsg());
 			}
+
 			break; 		   
-		default:
+		case default:
 			System.out.println("LoginService default called");
 			request.setAttribute("targetPage", "LoginView.jsp");
 		}
