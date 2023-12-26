@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="com.test.LoginUser"%>
+<jsp:useBean id="errorMsg" class="java.lang.String" scope="request"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,15 +36,20 @@
         <form id="frmLogin" name="frmLogin" method="post" autocomplete="off" >
             <h1>Hello World!</h1>
             <table>
+            <tr><td><span class="mandatorysymbol"><%=errorMsg%></span></td></tr>
                 <tr>
                     <td>
                         <input type="text" name="uname" id="uname" class="validate[required]" value=""/>  
+                        <jsp:useBean id="hdnUserNameInd" class="java.lang.String" scope="request"/>
+	 					 <span class="mandatorySymbol"><%=hdnUserNameInd%></span>
                         <input type="hidden" id="hdnUserName" name="hdnUserName" class="clsajaxcall" value="" />
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="text" name="password" id="password" class="validate[required]" value=""/>
+                        <jsp:useBean id="hdnPasswordInd" class="java.lang.String" scope="request"/>
+	 					 <span class="mandatorySymbol"><%=hdnPasswordInd%></span>
                         <input type="hidden" id="hdnPassword" name="hdnPassword" class="clsajaxcall" value="" />
                     </td>
                 </tr>

@@ -44,25 +44,37 @@ public class LoginService implements ServiceInterface {
 			System.out.println("LoginService View called");
 			String uname=request.getParameter("hdnUserName");
 			String password=request.getParameter("hdnPassword");
+			
+			LoginServiceValidation loginServiceValidation = new LoginServiceValidation();
+			
+			boolean isValidLogin = loginServiceValidation.isValidLogin(request, response, datasrc, session,1);
+			if(isValidLogin) {
+				LoginDAO loginDAO = new LoginDAO();		
 
-			LoginDAO loginDAO = new LoginDAO();		
+				JSONObject objResultJSON = new  JSONObject();
 
-			JSONObject objResultJSON = new  JSONObject();
-
-			if(loginDAO.getIsAuthenticated(uname,password)) {
-				objResultJSON.put("resultstatus", "success");
-				objResultJSON.put("resultmessage", "Login Successful.");
-				LoginUser loginUser= new LoginUser();
-				loginUser.setUserId(uname);
-				loginUser.setPassWord(password);
-				session.setAttribute("logUser", loginUser); 
-				request.setAttribute("targetPage", "MyHome.jsp");
+				//Enable to validate
+				//if(loginDAO.getIsAuthenticated(uname,password)) {
+				 if (true) {
+					objResultJSON.put("resultstatus", "success");
+					objResultJSON.put("resultmessage", "Login Successful.");
+					LoginUser loginUser= new LoginUser();
+					loginUser.setUserId(uname);
+					loginUser.setPassWord(password);
+					session.setAttribute("logUser", loginUser); 
+					request.setAttribute("targetPage", "MyHome.jsp");
+				}
+				else {
+					objResultJSON.put("resultstatus", "failure");
+					objResultJSON.put("resultmessage", "Invalid User Name and/or password.");
+					request.setAttribute("targetPage", "LoginView.jsp");
+				}
 			}
 			else {
-				objResultJSON.put("resultstatus", "failure");
-				objResultJSON.put("resultmessage", "Invalid User Name and/or password.");
 				request.setAttribute("targetPage", "LoginView.jsp");
+				request.setAttribute("errorMsg", loginServiceValidation.getErrorMsg());
 			}
+			
 			break; 		   
 		default:
 			System.out.println("LoginService default called");
