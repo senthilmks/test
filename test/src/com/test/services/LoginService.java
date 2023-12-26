@@ -62,6 +62,10 @@ public class LoginService implements ServiceInterface {
 					//request.setAttribute("targetPage", "MyHome.jsp");
 					request.setAttribute("targetPage", "Template.jsp");
 				}
+				else {
+					request.setAttribute("targetPage", "LoginView.jsp");
+					request.setAttribute("errorMsg", "Invalid Login and/or password.");
+				}
 			}
 			else {
 				request.setAttribute("targetPage", "LoginView.jsp");
@@ -69,7 +73,7 @@ public class LoginService implements ServiceInterface {
 			}
 
 			break; 		   
-		case default:
+		default:
 			System.out.println("LoginService default called");
 			request.setAttribute("targetPage", "LoginView.jsp");
 		}

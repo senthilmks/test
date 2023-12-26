@@ -8,7 +8,9 @@
 <script type="text/javascript">
             
              function funNavigateController(e,targetPage) {
+            	 console.log("funNavigateController called");
                  var targetPage=targetPage;
+                 console.log("funNavigateController targetPage >> "+targetPage);
                   e = e || window.event;
                   e.stopPropagation;     
                   var frmMain=document.getElementById("frmMain");
@@ -18,7 +20,10 @@
             }
 </script>
 
-<li><a href="#">Categories</a>
+  <div><a href="" onclick="return false;" onmouseup="funNavigateController(event,'HTvbTyJAjIy+5lKuvGfw8w=='); return false;"  > My Employee </a></div>
+         
+
+<%--<li><a href="#">Categories</a>
 		<ul class="droprightMenu">
 			<li><a href="#">All</a>
 				<ul class="droprightMenu">
@@ -43,16 +48,7 @@
 												<a href="" onclick="return false;" onmouseup="funNavigateController(event,'${columnList.menuid}'); return false;">${columnList.menuname} </a>
 												</div>
 
-                                                <%--  <!-- third loop, categories level 3  -->
-                                                    <ul class="droprightMenu">
-                                                        <c:forEach items="${menuList}" var="catLevel3">
-
-                                                            <c:if test="${catLevel3.parentmenuid==catLevel2.menuid }">
-                                                                <li><a href="#">${catLevel3.menuname }</a></li>
-                                                            </c:if>
-
-                                                        </c:forEach>
-                                                    </ul>--%>
+                                              
                                                     
                                                     </li>
                                             </c:if>
@@ -68,12 +64,6 @@
 					</c:if>
 				</ul></li>
 		</ul></li>
-
+ --%>
 	<input type="hidden" name="resourceid" id="resourceid" value="" />
-
-	<div>
-		<a href="" onclick="return false;"
-			onmouseup="funNavigateController(event,'pP3GA+NETMJXLv9j7eE51Q=='); return false;">
-			Logout Encryp</a>
-	</div>
 

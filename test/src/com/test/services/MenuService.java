@@ -54,7 +54,8 @@ public class MenuService implements ServiceInterface {
 			
 			
 
-			String menuDetails= menuDAO.getMenuDetails(strMenuId);
+			//String menuDetails= menuDAO.getMenuDetails(strMenuId);
+			String menuDetails="";
 			
 			if(menuDetails!=null && menuDetails.length()>0) {
 				System.out.println("menuDetails>>"+menuDetails);
@@ -80,15 +81,15 @@ public class MenuService implements ServiceInterface {
 //				
 //			}
 			
-			if(menuDetails!=null && menuDetails.length()>0) {
-				objResultJSON.put("resultstatus", "success");
-				objResultJSON.put("resultmessage", "Login Successful.");
-			}
-			else {
-				objResultJSON.put("resultstatus", "failure");
-				objResultJSON.put("resultmessage", "Invalid User Name and/or password.");
-				//request.setAttribute("targetPage", "LoginView.jsp");
-			}
+//			if(menuDetails!=null && menuDetails.length()>0) {
+//				objResultJSON.put("resultstatus", "success");
+//				objResultJSON.put("resultmessage", "Login Successful.");
+//			}
+//			else {
+//				objResultJSON.put("resultstatus", "failure");
+//				objResultJSON.put("resultmessage", "Invalid User Name and/or password.");
+//				//request.setAttribute("targetPage", "LoginView.jsp");
+//			}
 			
 			//request.getRequestDispatcher("/AppManager").forward(request,response);
 			break; 		   
@@ -98,6 +99,7 @@ public class MenuService implements ServiceInterface {
 			//request.getRequestDispatcher("/AppManager").forward(request,response);
 		}
 		request.setAttribute("targetPage", targetPage);
+		//request.setAttribute("targetPage", "Testing123.jsp");
 	}    
 }
 

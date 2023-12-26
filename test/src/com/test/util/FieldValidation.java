@@ -139,7 +139,7 @@ public class FieldValidation {
 		{
 			if(fieldValue!=null && fieldValue.trim().length()>0)
 			{
-				if(fieldValue.trim().length()<5)
+				if(fieldValue.trim().length()<4)
 				{
 					counter++;
 					
